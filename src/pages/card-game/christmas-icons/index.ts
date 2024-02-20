@@ -1,0 +1,10 @@
+export { default as AdornmentIcon } from "./adornment-icon";
+export { default as AutumnIcon } from "./autumn-icon";
+export { default as BeanieIcon } from "./beanie-icon";
+export { default as CandyIcon } from "./candy-icon";
+export { default as ClausIcon } from "./claus-icon";
+export { default as ColdIceIcon } from "./cold-ice-icon";
+export { default as DeerIcon } from "./deer-icon";
+export { default as HouseIcon } from "./house-icon";
+export { default as MittensIcon } from "./mittens-icon";
+export { default as SnowmanIcon } from "./snowman-icon";
