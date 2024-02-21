@@ -3,7 +3,7 @@ import image from "@/assets/christmas-paper.jpg";
 import { ReactNode } from "react";
 
 export interface Item {
-  id: number;
+  id: string;
   item: ReactNode;
   value: number;
   flip: boolean;
