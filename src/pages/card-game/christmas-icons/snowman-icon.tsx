@@ -1,4 +1,4 @@
-import { IconProps } from "./types";
+import { IconProps } from "../types";
 
 const SnowmanIcon = ({ size = 70 }: IconProps) => (
   <svg

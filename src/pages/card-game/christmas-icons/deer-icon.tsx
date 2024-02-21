@@ -1,4 +1,4 @@
-import { IconProps } from "./types";
+import { IconProps } from "../types";
 
 const DeerIcon = ({ size = 70 }: IconProps) => (
   <svg

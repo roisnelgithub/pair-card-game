@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { GameGrid, GameHeader, GameRecords } from "./components";
-import { CustomModal } from "@/componets";
+import { CustomModal } from "@/components";
 import EndGameInfo from "./components/end-game-info/end-game-info";
 
 const CardGamePage = () => {

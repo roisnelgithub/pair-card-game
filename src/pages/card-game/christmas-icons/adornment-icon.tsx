@@ -1,4 +1,4 @@
-import { IconProps } from "./types";
+import { IconProps } from "../types";
 const AdornmentIcon = ({ size = 70 }: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
