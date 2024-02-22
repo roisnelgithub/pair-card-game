@@ -7,17 +7,19 @@ export interface Record {
   id: number;
   createAt: string;
   name: string;
-  points: number;
+  score: number;
+}
+interface GameRecordsProps {
+  refreshRecords: boolean;
 }
 
-const GameRecords = () => {
+const GameRecords = ({ refreshRecords }: GameRecordsProps) => {
   const [records, setRecords] = useState<Record[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(true);
-
     try {
       getAllRecords()
         .then((res) => {
@@ -38,7 +40,7 @@ const GameRecords = () => {
     } catch (error) {
       setError("Something want wrong ");
     }
-  }, []);
+  }, [refreshRecords]);
   return (
     <Stack direction={"column"} alignItems={"center"} width={"100%"}>
       {isLoading ? (
@@ -51,7 +53,11 @@ const GameRecords = () => {
           spacing={2}
         >
           <Typography>Record list</Typography>
-          <RecordsTable records={records} />
+          {records.length > 0 ? (
+            <RecordsTable records={records} />
+          ) : (
+            <Typography>There are no scores yet!</Typography>
+          )}
         </Stack>
       ) : (
         <Typography>{error}</Typography>

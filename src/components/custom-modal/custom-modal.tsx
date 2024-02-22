@@ -8,7 +8,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 200,
+  maxWidth: 320,
   background: "#3d3d3d",
   boxShadow: 8,
   p: 4,
@@ -17,11 +17,13 @@ const style = {
 interface CustomModalProps {
   children: React.ReactNode;
   open: boolean;
+  isSubmitting: boolean;
   handleClose: () => void;
 }
 export default function CustomModal({
   children,
   open,
+  isSubmitting,
   handleClose,
 }: CustomModalProps) {
   return (
@@ -34,7 +36,11 @@ export default function CustomModal({
         <Box sx={style}>
           <Stack direction="column" justifyContent={"center"} spacing={2}>
             {children}
-            <Button variant="outlined" onClick={handleClose}>
+            <Button
+              variant="outlined"
+              onClick={handleClose}
+              disabled={isSubmitting}
+            >
               Close
             </Button>
           </Stack>

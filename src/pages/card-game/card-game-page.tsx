@@ -14,6 +14,8 @@ const CardGamePage = () => {
   const [win, setWin] = useState<boolean>(false);
   const [lost, setLost] = useState<boolean>(false);
   const [timeLeft, setTimeLeft] = useState(0);
+  const [refreshRecords, setRefreshRecords] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [openModal, setOpenModal] = useState(false);
   const handleOpen = () => setOpenModal(true);
@@ -70,6 +72,14 @@ const CardGamePage = () => {
     setScore(0);
     handleOpen();
   };
+  const handleSaveDone = () => {
+    handleClose();
+    resetGame();
+    setRefreshRecords(!refreshRecords);
+  };
+  const handleSubmitting = (value: boolean) => {
+    setIsSubmitting(value);
+  };
 
   return (
     <>
@@ -92,9 +102,19 @@ const CardGamePage = () => {
         onFindPair={pairsCounter}
         thereIsALoser={lost}
       />
-      <GameRecords />
-      <CustomModal open={openModal} handleClose={handleClose}>
-        <EndGameInfo score={score} timeLeft={timeLeft} />
+      <GameRecords refreshRecords={refreshRecords} />
+      <CustomModal
+        open={openModal}
+        handleClose={handleClose}
+        isSubmitting={isSubmitting}
+      >
+        <EndGameInfo
+          score={score}
+          timeLeft={timeLeft}
+          thereIsAWinner={win}
+          onSaveDone={handleSaveDone}
+          onSubmitting={handleSubmitting}
+        />
       </CustomModal>
     </>
   );
