@@ -5,6 +5,7 @@ import * as path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: "https://roisnelgithub.github.io/pair-card-game",
   resolve: {
     alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
   },
