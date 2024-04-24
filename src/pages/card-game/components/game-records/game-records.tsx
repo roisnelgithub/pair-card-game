@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import RecordsTable from "./records-table";
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { getAllRecords } from "@/helpers/supabase-queries";
 
 export interface Record {
@@ -11,9 +11,10 @@ export interface Record {
 }
 interface GameRecordsProps {
   refreshRecords: boolean;
+  onRefreshManual: () => void;
 }
 
-const GameRecords = ({ refreshRecords }: GameRecordsProps) => {
+const GameRecords = ({ refreshRecords, onRefreshManual }: GameRecordsProps) => {
   const [records, setRecords] = useState<Record[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -30,7 +31,7 @@ const GameRecords = ({ refreshRecords }: GameRecordsProps) => {
               setRecords(res.data);
             }
             if (res.error !== null) {
-              setError(res.error?.message);
+              setError("Something want wrong, try later");
             }
           }
         })
@@ -42,7 +43,13 @@ const GameRecords = ({ refreshRecords }: GameRecordsProps) => {
     }
   }, [refreshRecords]);
   return (
-    <Stack direction={"column"} alignItems={"center"} width={"100%"}>
+    <Stack
+      direction={"column"}
+      alignItems={"center"}
+      width={"100%"}
+      spacing={2}
+    >
+      <Typography variant="h5">Record list</Typography>
       {isLoading ? (
         "Loading..."
       ) : error === null ? (
@@ -52,7 +59,6 @@ const GameRecords = ({ refreshRecords }: GameRecordsProps) => {
           sx={{ maxWidth: "350px" }}
           spacing={2}
         >
-          <Typography>Record list</Typography>
           {records.length > 0 ? (
             <RecordsTable records={records} />
           ) : (
@@ -60,7 +66,17 @@ const GameRecords = ({ refreshRecords }: GameRecordsProps) => {
           )}
         </Stack>
       ) : (
-        <Typography>{error}</Typography>
+        <Stack direction="column" spacing={1}>
+          <Typography>{error}</Typography>
+          <Button
+            variant={"outlined"}
+            onClick={onRefreshManual}
+            color="error"
+            disabled={isLoading}
+          >
+            Refresh
+          </Button>
+        </Stack>
       )}
     </Stack>
   );

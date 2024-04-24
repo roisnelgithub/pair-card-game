@@ -74,7 +74,7 @@ export default function RecordsTable({ records }: RecordsTableProps) {
                 </Stack>
               </StyledTableCell>
               <StyledTableCell align="center">{row.name}</StyledTableCell>
-              <StyledTableCell align="center">{row.points}</StyledTableCell>
+              <StyledTableCell align="center">{row.score}</StyledTableCell>
             </TableRow>
           ))}
         </TableBody>

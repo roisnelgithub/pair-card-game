@@ -4,7 +4,7 @@ import { CustomModal } from "@/components";
 import EndGameInfo from "./components/end-game-info/end-game-info";
 
 const CardGamePage = () => {
-  const [sizeImages] = useState<number>(2);
+  const [sizeImages] = useState<number>(10);
   const initialPoints = sizeImages * 4;
   const [points, setPoints] = useState<number>(initialPoints);
   const [score, setScore] = useState<number>(0);
@@ -80,6 +80,9 @@ const CardGamePage = () => {
   const handleSubmitting = (value: boolean) => {
     setIsSubmitting(value);
   };
+  const handleRefreshManual = () => {
+    setRefreshRecords(!refreshRecords);
+  };
 
   return (
     <>
@@ -102,7 +105,10 @@ const CardGamePage = () => {
         onFindPair={pairsCounter}
         thereIsALoser={lost}
       />
-      <GameRecords refreshRecords={refreshRecords} />
+      <GameRecords
+        refreshRecords={refreshRecords}
+        onRefreshManual={handleRefreshManual}
+      />
       <CustomModal
         open={openModal}
         handleClose={handleClose}
